@@ -2,6 +2,8 @@
 import 'package:ecommercefirbase/screen/sign_up.dart';
 import 'package:flutter/material.dart';
 
+import '../homePage/home_page.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -30,104 +32,107 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                height: 300,
-                width: double.infinity,
-                child: Column(
-                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("Login",style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-
-                    ),),
-                    TextFormField(
-                      validator: (value) {
-                        if (value == "") {
-                          return "Please Fill The Email";
-                        }
-                        else if(!regExp.hasMatch(value!)){
-                          return "Email Is InVaild";
-                        }
-                        return "";
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    TextFormField(
-                      obscureText: obserText,
-                      validator: (value){
-                        if(value==""){
-                          return "Please Fill Password";
-                        }else if(value!.length <8){
-                          return "Password Is To Short";
-
-                        }
-                        return "";
-                      },
-                      decoration: InputDecoration(
-
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                             setState(() {
-                               obserText=obserText;
-                             });
-                            },
-                            child: Icon(
-                              obserText==true ?
-                              Icons.visibility:Icons.visibility_off, color: Colors.black,),
-                          ),
-                          hintText: "Password",
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  height: 300,
+                  width: double.infinity,
+                  child: Column(
+                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("Login",style: TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+          
+                      ),),
+                      TextFormField(
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please Fill The Email";
+                          }
+                          else if(!regExp.hasMatch(value!)){
+                            return "Email Is InVaild";
+                          }
+                          return "";
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Email',
                           hintStyle: TextStyle(
                             color: Colors.black,
                           ),
-                          border: OutlineInputBorder(
-
-                          )
-                      ),
-                    ),
-                    Container(
-                        height: 60,
-                        width: double.infinity,
-
-                        child: ElevatedButton(onPressed: () {
-                          validation();
-
-                        }, child: Text(
-                            "Regeister"))),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("I Have Not An Account"),
-                        SizedBox(width: 10,),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
-                          },
-                          child: Text("Sign Up", style: TextStyle(
-                            color: Colors.cyan,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                          ),),
+                          border: OutlineInputBorder(),
                         ),
-                      ],
-                    )
-
-                  ],
-                ),
-              )
-            ],
+                      ),
+                      TextFormField(
+                        obscureText: obserText,
+                        validator: (value){
+                          if(value==""){
+                            return "Please Fill Password";
+                          }else if(value!.length <8){
+                            return "Password Is To Short";
+          
+                          }
+                          return "";
+                        },
+                        decoration: InputDecoration(
+          
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                               setState(() {
+                                 obserText=obserText;
+                               });
+                              },
+                              child: Icon(
+                                obserText==true ?
+                                Icons.visibility:Icons.visibility_off, color: Colors.black,),
+                            ),
+                            hintText: "Password",
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            border: OutlineInputBorder(
+          
+                            )
+                        ),
+                      ),
+                      Container(
+                          height: 60,
+                          width: double.infinity,
+          
+                          child: ElevatedButton(onPressed: () {
+                            validation();
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()));
+          
+                          }, child: Text(
+                              "Regeister"))),
+          
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("I Have Not An Account"),
+                          SizedBox(width: 10,),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=>SignUp()));
+                            },
+                            child: Text("Sign Up", style: TextStyle(
+                              color: Colors.cyan,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),),
+                          ),
+                        ],
+                      )
+          
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
